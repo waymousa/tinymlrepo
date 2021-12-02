@@ -1,0 +1,47 @@
+set(COMPONENT_SRCS 
+    "main.c" 
+    "blink.c" 
+    "ui.c"
+    "wifi.c" 
+    "mic.c"  
+    # "ota_task.c"  
+    # "data_batch.c"  
+    "sntp_sync.c" 
+    "mpu.c" 
+    # "ota_pal.c"
+    # "aws_esp_ota_ops.c"
+    # "iotex_task.c"
+    "tflite_main.cc"
+    "tflite/constants.cc"
+    "tflite/main_functions.cc" 
+    "tflite/output_handler.cc" 
+    "tflite/command_responder.cc"
+    "tflite/feature_provider.cc"
+    "tflite/recognize_commands.cc"
+    "tflite/model.cc" 
+    "tflite/audio_provider.cc"
+    "tflite/ringbuf.c"
+    "tflite/micro_features/micro_features_generator.cc"
+    "tflite/micro_features/micro_model_settings.cc"
+    "tflite/micro_features/no_micro_features_data.cc"
+    "tflite/micro_features/yes_micro_features_data.cc"
+    # "sd.c"
+    "respond.c"
+)
+set(COMPONENT_ADD_INCLUDEDIRS "." "./includes" "./tflite/micro_features" "./tflite")
+set(COMPONENT_REQUIRES 
+    "nvs_flash" 
+    "esp-aws-iot" 
+    "esp-cryptoauthlib" 
+    "core2forAWS" 
+    "tfmicro" 
+    # "esp_http_client" 
+    # "esp_https_ota"
+    # "ota-for-aws-iot-embedded-sdk"
+    "app_update"
+    # "antenna-sdk"
+    # "sdmmc"
+)
+register_component()
+
+target_add_binary_data(${COMPONENT_TARGET} "certs/aws-root-ca.pem" TEXT)
